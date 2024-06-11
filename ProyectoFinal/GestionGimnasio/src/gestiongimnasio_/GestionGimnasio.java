@@ -104,45 +104,25 @@ public class GestionGimnasio {
      
 
         // Crear un Scanner para capturar la entrada del usuario
-        Scanner scanner = new Scanner(System.in);
+                ClaseData claseD = new ClaseData();
 
-        // Solicitar al usuario el nombre de la clase
-        System.out.println("Ingrese el nombre de la clase (o presione Enter para omitir): ");
-        String nombre = scanner.nextLine().trim();
-        if (nombre.isEmpty()) {
-            nombre = null;
-        }
+        // Llamar al método buscarClases con parámetros de prueba
+        String nombreClase = "Yoga";         // Puedes cambiar estos valores para probar diferentes casos
+        String nombreEntrenador = "Juan Perez"; // Puedes cambiar estos valores para probar diferentes casos
+        String horario = "10:00";             // Puedes cambiar estos valores para probar diferentes casos
 
-        // Solicitar al usuario el nombre del entrenador
-        System.out.println("Ingrese el nombre del entrenador (o presione Enter para omitir): ");
-        String entrenador = scanner.nextLine().trim();
-        if (entrenador.isEmpty()) {
-            entrenador = null;
-        }
+        List<Clase> clases = claseD.buscarClases(nombreClase, nombreEntrenador, horario);
 
-        // Solicitar al usuario el horario de la clase
-        System.out.println("Ingrese el horario de la clase (o presione Enter para omitir): ");
-        String horario = scanner.nextLine().trim();
-        if (horario.isEmpty()) {
-            horario = null;
-        }
-
-        // Llamar al método `buscarClases`
-        List<Clase> clases = claseData.buscarClases(nombre, entrenador, horario);
-
-        // Imprimir los resultados
+        // Mostrar los resultados
         for (Clase clase : clases) {
             System.out.println("ID Clase: " + clase.getId_clase());
             System.out.println("Nombre Clase: " + clase.getNombre());
-            System.out.println("ID Entrenador: " + clase.getIdEntrenador().getId_entrenadores());
-            System.out.println("Nombre Entrenador: " + clase.getIdEntrenador().getNombre() + " " + clase.getIdEntrenador().getApellido());
+            System.out.println("Entrenador: " + clase.getIdEntrenador().getNombre() + " " + clase.getIdEntrenador().getApellido());
             System.out.println("Horario: " + clase.getHorario());
             System.out.println("Capacidad: " + clase.getCapacidad());
-            System.out.println("Estado: " + clase.isEstado());
-            System.out.println("-------------------------------------");
+            System.out.println("Estado: " + (clase.isEstado() ? "Activo" : "Inactivo"));
+            System.out.println();
         }
-
-        scanner.close();
     }
 }
    
